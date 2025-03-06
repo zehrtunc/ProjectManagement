@@ -30,7 +30,7 @@ Bu proje, **ASP.NET Core MVC** mimarisi kullanılarak geliştirilmiş, kullanıc
 
 | Kanban Board | Görev Ekleme Popup |
 |--------------|--------------------|
-| ![Kanban](images/screenshots/Kanban.png) | ![Popup](images/screenshots/Add_Task_popup.png) |
+| ![Kanban](wwwwroot/images/screenshots/Kanban.png) | ![Popup](wwwroot/images/screenshots/Add_Task_popup.png) |
 
 ---
 
