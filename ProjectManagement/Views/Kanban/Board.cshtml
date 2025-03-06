@@ -1,0 +1,150 @@
+﻿@*@model TaskCardViewModel;*@  <!-- Verileri ajax ile cektigimiz icin model dosyasina ihtiyac yoktur. -->
+
+<div class="container-fluid">
+    <div class="nk-content-inner">
+        <div class="nk-content-body">
+            <div class="nk-block-head nk-block-head-sm">
+                <div class="nk-block-between">
+                    <div class="nk-block-head-content">
+                        <h3 class="nk-block-title page-title">Kanban Board</h3>
+                    </div><!-- .nk-block-head-content -->
+                    <div class="nk-block-head-content">
+                        <div class="toggle-wrap nk-block-tools-toggle">
+                            <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
+                            <div class="toggle-expand-content" data-content="pageMenu">
+                                <ul class="nk-block-tools g-3">
+                                    <li><button id="addTaskBtn" class="btn btn-white btn-outline-light"><em class="icon ni ni-plus"></em><span>Add Task</span></button></li>
+                            </div>
+                        </div><!-- .toggle-wrap -->
+                    </div><!-- .nk-block-head-content -->
+                </div><!-- .nk-block-between -->
+            </div><!-- .nk-block-head -->
+            <div class="nk-block">
+                <div id="kanban" class="nk-kanban">
+                    <div class="kanban-container">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="./assets/js/libs/jkanban.js"></script>
+    <script src="./assets/js/apps/kanban.js"></script>
+    <script src="~/assets/js/sweetalert2/sweetalert2.min.js"></script>
+    
+
+    <script>
+        var isCardSaved = null;
+        // sendCardToAction()
+        // Bu metot Kanban controllerda bulunan AddCard actionunu tetikler
+        // Bu actiona veri gönder ve gönderdiğin veri, backend`e gelsin. Backend`e gelince AddCard action`u tetiklemesiyle veritabanina veri gider.
+        function sendCardToAction(card) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "/Kanban/AddCard",// KanbanController içindeki AddCard endpoint'ine istek atılır.
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(card),
+                    success: function (response) {
+                        // Kanban.js`de tanimlanmis olan bu fonksiyon yukaridaki kanban script`i sayesinde burda cagrilip kullanilabilmektedir.
+                        // Kanban Board'a yeni task ekle
+                        // Controllerdan donen JSON nesnesindeki veriyi kullanarak board`a ekler
+                        addCardToKanban(response); // Yeni oluşturulan task "_open" board'una eklenir.
+                        isCardSaved = true;
+                        resolve(response);
+                    },
+                    error: function () {
+                        isCardSaved = false;
+                        reject("Hata oluştu!");
+                    }
+                });
+            });
+        }
+
+        $(document).ready(function () {
+            $("#addTaskBtn").click(() => {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger"
+                    },
+                    buttonsStyling: false
+                });
+
+                swalWithBootstrapButtons.fire({
+                    title: "Task Oluşturunuz",
+                    html: `
+                        <form asp-action="Board" asp-controller="Kanban">
+                            <label for="taskTitle" class="swal2-label">Task İsmi</label>
+                            <input asp-for="Header" id="taskTitle" class="swal2-input" type="text">
+
+                            <label for="taskContext" class="swal2-label">Task Açıklaması</label>
+                            <textarea asp-for="Context" id="taskContext" class="swal2-input" rows="5"></textarea>
+
+                            <label for="taskDeadline" class="swal2-label">Task Teslim Tarihi</label>
+                            <input asp-for="DeadlineDate" id="taskDeadline" class="swal2-input" type="Date">
+                        </form>
+                    `,
+                    iconHtml: '<img src="./images/task.png" width="150">',
+                    /*icon: "warning",*/
+                    showCancelButton: true,
+                    confirmButtonText: "Kaydet",
+                    cancelButtonText: "Vazgeç!",
+                    //reverseButtons: true
+
+                    preConfirm: async () => {
+                        const taskTitle = $("#taskTitle").val();
+                        const taskContext = $("#taskContext").val();
+                        const taskDeadline = $("#taskDeadline").val();
+
+                        if (!taskTitle || !taskContext || !taskDeadline) {
+                            Swal.showValidationMessage("Tüm alanları doldurunuz!");
+                            return false;
+                        }
+
+                        let newTask = {
+                            Header: taskTitle,
+                            Context: taskContext,
+                            DeadlineDate: taskDeadline
+                        };
+
+                        // Yükleme göstergesini başlat
+                        Swal.fire({
+                            title: "Task Kaydediliyor...",
+                            text: "Lütfen bekleyin",
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        // Task'ı backend`e gonderen fonksiyon(/Kanban/AddTask actionunu tetikleyecek, action da Db ye veriyi gonderecek.
+                        
+                        await sendCardToAction(newTask);
+                        return { taskTitle, taskContext, taskDeadline }; // result.value`ya veriyi obje olarak dondurur.
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed && isCardSaved) {
+                        swalWithBootstrapButtons.fire({
+                            title: "Kaydedildi!",
+                            text: "Oluşturulan Task Kanban Board`a kaydedildi.",
+                            icon: "success"
+                        });
+                    }
+                    else if (result.dismiss === Swal.DismissReason.cancel || !isCardSaved) {
+                        swalWithBootstrapButtons.fire({
+                            title: "Kaydedilmedi",
+                            text: "Task kaydedilmedi !",
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
+

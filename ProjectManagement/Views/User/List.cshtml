@@ -1,0 +1,70 @@
+﻿@using ProjectManagement.Models.ViewModels.UserViewModels
+
+@model List<UserListViewModel>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>İsim - Soyisim</th>
+            <th>Email</th>
+            <th>Rol</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Aksiyon</th>
+            }
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="/User/Edit?id=@user.Id" class="btn btn-warning">Düzenle</a>
+                        <a href="#" class="btn btn-danger" onclick="confirmDelete(event, '@user.Id')">Delete</a>
+                    }
+                    @* href="#" koyduk ki tarayıcı anında yönlendirme yapmasın. *@
+                    @*  window.location.href = "/User/Delete?id=@user.Id"  *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function confirmDelete(event, userId) { // event -> Butona tıklandığında oluşan tıklama olayını (click event) temsil eder.
+                                            // user.Id -> Silinmek istenen kullanıcının ID’si. C# tarafındaki @* @user.Id *@ değerini JavaScript’e aktarıyoruz.
+
+      /*  Bu kod, butona tıklandığında varsayılan işlemi iptal eder */
+        event.preventDefault(); // Direkt olarak silme işlemini engelliyoruz. -> sayesinde tıklanınca sayfa doğrudan yönlendirilmez. Swal onayi bekler
+
+        console.log("Silinecek ID:", userId); // ID'nin gelip gelmediğini kontrol et
+
+
+        Swal.fire({
+            title: "Emin misiniz?",
+            text: "Bu kullanıcı silinecek ve geri alınamaz!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Evet, sil!",
+            cancelButtonText: "İptal"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Eğer kullanıcı onay verdiyse, DELETE URL'sine yönlendir
+                // ID'yi URL için encode ederek yönlendirme yap
+                // Kullanıcı "Evet, sil!" derse yönlendirme yap
+                window.location.href = `/User/Delete?id=${userId}`; // yönlendirme işlemi Swal onayından sonra gerçekleşiyor.
+            }
+        });
+    }</script>

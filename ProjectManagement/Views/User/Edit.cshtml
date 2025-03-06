@@ -1,0 +1,120 @@
+﻿
+
+@model ProjectManagement.Models.ViewModels.UserViewModels.UserEditViewModel
+
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Font Awesome CDN  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    /* Select2 Çoklu Seçim İçin Inline Görünüm */
+    .select2-container--default .select2-selection--multiple {
+        display: inline-flex !important;
+        flex-wrap: wrap;
+        align-items: center;
+        min-width: 200px;
+        min-height: 50px; /* Bootstrap input yüksekliği ile eşleşsin */
+        padding-right: 30px; /* Ok için boşluk bırak */
+        position: relative;
+    }
+
+        /* Seçilen Seçeneklerin Tasarımı */
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            margin: 2px;
+            display: inline-flex;
+            align-items: center;
+            background: #007bff;
+            color: white;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+    /* OK İKONU (Açılır/Kapanır) */
+    .select2-selection:after {
+        content: "\f078"; /* Font Awesome aşağı ok (chevron-down) */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 14px;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: #555;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Select2 Açıldığında Yukarı Ok Olsun */
+    .select2-container--open .select2-selection:after {
+        content: "\f077"; /* Yukarı ok (chevron-up) */
+    }
+
+    /* Select2 Seçili Öğelerin Kapatma Butonunu Özelleştir */
+    .select2-selection__choice__remove {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px; /* Boyutu büyüttük */
+        padding: 4px 8px; /* İç boşluğu artırdık */
+        margin-left: 5px;
+        color: white !important; /* X ikonunun rengini beyaz yaptık */
+        background: rgba(255, 255, 255, 0.3); /* Hafif arka plan ekledik */
+        border-radius: 50%; /* Yuvarlak hale getirdik */
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+        /* X ikonuna hover (üzerine gelince) efekti ekle */
+        .select2-selection__choice__remove:hover {
+            background: white !important;
+            color: red !important; /* Üzerine gelince rengi kırmızı yap */
+            cursor: pointer; /* İmleç değiştirme */
+        }
+</style>
+
+<form asp-action="Edit" asp-controller="User" method="post">
+    <input asp-for="Id" type="hidden" />
+    <div class="mb-3">
+        <label for="name" class="form-label d-block">İsim</label>
+        <input asp-for="Name" class="form-control d-inline-flex" id="name" style="width:auto;">
+    </div>
+    <div class="mb-3">
+        <label for="surName" class="form-label d-block">Soy İsim</label>
+        <input asp-for="SurName" class="form-control d-inline-flex" id="surName" style="width:auto;">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Roller</label>
+        <select asp-for="SelectedRoles" asp-items="Model.Roles" multiple class="form-control select2">
+        </select>
+    </div>
+    @*@foreach(string role in Model.Roles)
+        {
+            <option>@role</option>
+        }*@
+    <button class="btn btn-primary" type="submit">Gönder</button>
+</form>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".select2").select2({
+            placeholder: "Rolleri giriniz",
+            allowClear: true // kullanıcıların tüm seçimleri kaldırmasına izin verir.
+        });
+
+        // Select2 Açıldığında Ok Değişsin
+        $('.select2').on('select2:open', function () {
+            $(this).next('.select2-container').find('.select2-selection').addClass('select2-open');
+        });
+
+        $('.select2').on('select2:close', function () {
+            $(this).next('.select2-container').find('.select2-selection').removeClass('select2-open');
+        });
+    });
+</script>

@@ -1,0 +1,82 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-ProjectManagement-d397ad6e-2bf6-4bb5-8bb5-031da37fbdd4</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\fonts\bootstrap-icons.woff" />
+    <None Include="wwwroot\assets\fonts\bootstrap-icons.woff2" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.eot" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.svg" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.woff" />
+    <None Include="wwwroot\assets\fonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.eot" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.svg" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.woff" />
+    <None Include="wwwroot\assets\fonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.eot" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.svg" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.woff" />
+    <None Include="wwwroot\assets\fonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\assets\fonts\Nioicon.eot" />
+    <None Include="wwwroot\assets\fonts\Nioicon.svg" />
+    <None Include="wwwroot\assets\fonts\Nioicon.ttf" />
+    <None Include="wwwroot\assets\fonts\Nioicon.woff" />
+    <None Include="wwwroot\assets\fonts\Nunito-Bold.eot" />
+    <None Include="wwwroot\assets\fonts\Nunito-Bold.ttf" />
+    <None Include="wwwroot\assets\fonts\Nunito-Bold.woff" />
+    <None Include="wwwroot\assets\fonts\Nunito-Bold.woff2" />
+    <None Include="wwwroot\assets\fonts\Nunito-Regular.eot" />
+    <None Include="wwwroot\assets\fonts\Nunito-Regular.ttf" />
+    <None Include="wwwroot\assets\fonts\Nunito-Regular.woff" />
+    <None Include="wwwroot\assets\fonts\Nunito-Regular.woff2" />
+    <None Include="wwwroot\assets\fonts\Roboto-Bold.eot" />
+    <None Include="wwwroot\assets\fonts\Roboto-Bold.ttf" />
+    <None Include="wwwroot\assets\fonts\Roboto-Bold.woff" />
+    <None Include="wwwroot\assets\fonts\Roboto-Bold.woff2" />
+    <None Include="wwwroot\assets\fonts\Roboto-Light.eot" />
+    <None Include="wwwroot\assets\fonts\Roboto-Light.ttf" />
+    <None Include="wwwroot\assets\fonts\Roboto-Light.woff" />
+    <None Include="wwwroot\assets\fonts\Roboto-Light.woff2" />
+    <None Include="wwwroot\assets\fonts\Roboto-Medium.eot" />
+    <None Include="wwwroot\assets\fonts\Roboto-Medium.ttf" />
+    <None Include="wwwroot\assets\fonts\Roboto-Medium.woff" />
+    <None Include="wwwroot\assets\fonts\Roboto-Medium.woff2" />
+    <None Include="wwwroot\assets\fonts\Roboto-Regular.eot" />
+    <None Include="wwwroot\assets\fonts\Roboto-Regular.ttf" />
+    <None Include="wwwroot\assets\fonts\Roboto-Regular.woff" />
+    <None Include="wwwroot\assets\fonts\Roboto-Regular.woff2" />
+    <None Include="wwwroot\assets\fonts\summernote.eot" />
+    <None Include="wwwroot\assets\fonts\summernote.ttf" />
+    <None Include="wwwroot\assets\fonts\summernote.woff" />
+    <None Include="wwwroot\assets\fonts\summernote.woff2" />
+    <None Include="wwwroot\assets\fonts\themify.eot" />
+    <None Include="wwwroot\assets\fonts\themify.svg" />
+    <None Include="wwwroot\assets\fonts\themify.ttf" />
+    <None Include="wwwroot\assets\fonts\themify.woff" />
+    <None Include="wwwroot\assets\fonts\tinymce-mobile.woff" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Docs\" />
+  </ItemGroup>
+
+</Project>

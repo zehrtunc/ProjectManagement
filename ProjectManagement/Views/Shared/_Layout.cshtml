@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="zxx" class="js">
+<head>
+    <base href="../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" type="image/png" href="./images/ProjectManagementLogo.png" sizes="16x16">
+    <!-- Page Title  -->
+    <title>Proje Yönetim Sistemi | Kanban</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="./assets/css/dashlite.css?ver=2.4.0">
+    @*<link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=2.4.0">*@
+
+    @*<link rel="stylesheet" href="~/lib/toastr.js/toastr.min.css" />*@
+</head>
+
+<body class="nk-body bg-lighter npc-general has-sidebar no-touch nk-nio-theme dark-mode">
+    <div class="nk-app-root">
+        <!-- main   -->
+        <div class="nk-main ">
+            <!-- sidebar   -->
+            <div class="nk-sidebar nk-sidebar-fixed is-dark" data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-menu-trigger">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+                        <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                    </div>
+                    <div class="nk-sidebar-brand">
+                        <a href="html/index.html" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" src="./images/ProjectLogo.png" alt="logo">
+                            <img class="logo-dark logo-img" src="./images/ProjectLogo.png" alt="logo-dark">
+                        </a>
+                    </div>
+                </div><!-- .nk-sidebar-element -->
+                <div class="nk-sidebar-element nk-sidebar-body">
+                    <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-menu" data-simplebar="init">
+                            <div class="simplebar-wrapper" style="margin: -16px 0px -40px;">
+                                <div class="simplebar-height-auto-observer-wrapper">
+                                    <div class="simplebar-height-auto-observer"></div>
+                                </div>
+                                <div class="simplebar-mask">
+                                    <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                        <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                            <div class="simplebar-content" style="padding: 16px 0px 40px;">
+                                                <ul class="nk-menu">
+                                                    <li class="nk-menu-item">
+                                                        <a href="html/index.html" class="nk-menu-link" data-original-title="" title="">
+                                                            <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
+                                                            <span class="nk-menu-text">Default Dashboard</span>
+                                                        </a>
+                                                        <!--<li class="nk-menu-item has-sub">
+                                                            <a href="#" class="nk-menu-link nk-menu-toggle" data-original-title="" title="">
+                                                                <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                                                                <span class="nk-menu-text">Projects</span>
+                                                            </a>
+                                                            <ul class="nk-menu-sub">
+                                                                <li class="nk-menu-item">
+                                                                    <a href="html/project-card.html" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">Project Cards</span></a>
+                                                                </li>
+                                                                <li class="nk-menu-item">
+                                                                    <a href="html/project-list.html" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">Project List</span></a>
+                                                                </li>
+                                                            </ul>-->
+                                                        <!-- .nk-menu-sub -->
+                                                        <!--</li>--><!-- .nk-menu-item -->
+                                                    <li class="nk-menu-item has-sub">
+                                                        <a href="#" class="nk-menu-link nk-menu-toggle" data-original-title="" title="">
+                                                            <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                                            <span class="nk-menu-text">User Manage</span>
+                                                        </a>
+                                                        <ul class="nk-menu-sub">
+                                                            <li class="nk-menu-item">
+                                                                <a href="/User/List" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">Kullanıcı Listesi</span></a>
+                                                            </li>
+                                                        </ul><!-- .nk-menu-sub -->
+                                                    </li><!-- .nk-menu-item -->
+                                                    <li class="nk-menu-item has-sub active current-page">
+                                                        <a href="#" class="nk-menu-link nk-menu-toggle" data-original-title="" title="">
+                                                            <span class="nk-menu-icon"><em class="icon ni ni-grid-alt"></em></span>
+                                                            <span class="nk-menu-text">Applications</span>
+                                                        </a>
+                                                        <ul class="nk-menu-sub" style="display: block;">
+                                                            <li class="nk-menu-item active current-page">
+                                                                <a href="/Kanban/Board" class="nk-menu-link" data-original-title="" title=""><span class="nk-menu-text">Kanban Board</span><span class="nk-menu-badge badge-warning">New</span></a>
+                                                            </li>
+                                                        </ul><!-- .nk-menu-sub -->
+                                                    </li><!-- .nk-menu-item -->
+                                                </ul><!-- .nk-menu -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><div class="simplebar-placeholder" style="width: auto; height: 1420px;"></div>
+                            </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 504px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div>
+                        </div><!-- .nk-sidebar-menu -->
+                    </div><!-- .nk-sidebar-content -->
+                </div><!-- .nk-sidebar-element -->
+            </div>
+            <!-- sidebar   -->
+            <!-- wrap   -->
+            <div class="nk-wrap ">
+                <!-- main header   -->
+                <div class="nk-header nk-header-fixed is-light">
+                    <div class="container-fluid">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ml-n1">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                            </div>
+                            <div class="nk-header-brand d-xl-none">
+                                <a href="html/index.html" class="logo-link p-5">
+                                    <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo" height="50">
+                                    <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark" height="50">
+                                </a>
+                            </div><!-- .nk-header-brand -->
+                            <div class="nk-header-news d-none d-xl-block">
+                                <div class="nk-news-list">
+                                    @*<a class="nk-news-item" href="#">
+                                        <div class="nk-news-icon">
+                                            <em class="icon ni ni-card-view"></em>
+                                        </div>*@
+                                        @*<div class="nk-news-text">
+                                            <p>
+                                                Son güncellemeleri takip etmek ister misin?
+                                                <span>
+                                                    <a href="https://github.com/YilmazTuncTeam/PojectManagement" target="_blank" class="d-inline-flex">Github</a>
+                                                </span>
+                                            </p>
+                                            <em class="icon ni ni-external"></em>
+                                        </div>*@
+                                    </a>
+                                </div>
+                            </div><!-- .nk-header-news -->
+                            <div class="nk-header-tools">
+                                @await Component.InvokeAsync("UserInfo")
+                            </div><!-- .nk-header-tools -->
+                        </div><!-- .nk-header-wrap -->
+                    </div><!-- .container-fliud -->
+                </div>
+                <!-- main header   -->
+                <!-- content   -->
+                <div class="nk-content ">
+                    @RenderBody()
+                </div>
+                <!-- content   -->
+                <!-- footer   -->
+                <div class="nk-footer">
+                    <div class="container-fluid">
+                        <div class="nk-footer-wrap">
+                            <div class="nk-footer-copyright">
+                                © 2025 Proje Yönetim Sistemi. Made by <a href="https://www.linkedin.com/in/zehra-tunc/" target="_blank">Zehra Tunc</a>
+                            </div>
+                            <div class="nk-footer-links">
+                                <ul class="nav nav-sm">
+                                    <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer   -->
+            </div>
+            <!-- wrap   -->
+        </div>
+        <!-- main  -->
+    </div>
+    <!-- app-root  -->
+    <!-- JavaScript -->
+    <script src="./assets/js/bundle.js"></script> 
+    @*<script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="./lib/toastr.js/toastr.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/lib/almond/almond.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/simplebar/dist/simplebar.min.js"></script>
+    <script src="~/lib/zehraBundle.js"></script>*@
+    <script src="./assets/js/scripts.js"></script>
+
+
+    @*<script>
+        $(document).ready(function () {
+            toastr.options.positionClass = 'toast-top-right';
+            toastr.success("asdasd", "asdasdasd");
+        })
+    </script>*@
+
+    @RenderSection("Scripts", false) @* paratametreler (metod isimleri, action isimleri, section isimleri) genelde string olarak alinir *@
+
+</body>
+</html>
